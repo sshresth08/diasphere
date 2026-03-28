@@ -69,7 +69,7 @@ export default function RezeptDetailPage() {
       {/* Zutaten */}
       <h2 className="text-base font-bold text-ds-dark mb-3">Zutaten</h2>
       <div
-        className="bg-white rounded-2xl border border-[#E2E8F0] mb-6 overflow-hidden"
+        className="bg-white rounded-2xl border border-ds-border mb-6 overflow-hidden"
         style={{ boxShadow: '0 1px 3px 0 rgba(0,0,0,0.04)' }}
       >
         {rezept.zutaten.map((zutat, index) => (
@@ -85,7 +85,7 @@ export default function RezeptDetailPage() {
               <p className="text-[14px] text-ds-mid">{zutat}</p>
             </div>
             {index < rezept.zutaten.length - 1 && (
-              <hr className="border-[#E2E8F0] mx-4" />
+              <hr className="border-ds-border mx-4" />
             )}
           </div>
         ))}
