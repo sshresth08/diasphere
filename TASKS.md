@@ -1,6 +1,6 @@
 # DiaSphere — Project Roadmap & Task Tracker
 
-_Last updated: 2026-03-28 (auth pages)_
+_Last updated: 2026-03-28 (dashboard shell)_
 
 ## Project Overview
 
@@ -71,8 +71,8 @@ _Nothing actively in progress._
 
 ### UI Phase 2 — Onboarding & Dashboard Shell
 - [ ] Post-signup onboarding flow (diabetes type confirmation, profile setup)
-- [ ] Authenticated app shell layout (sidebar or bottom nav)
-- [ ] Dashboard home page (`/dashboard`)
+- [x] Authenticated app shell layout (bottom nav) — `app/(app)/layout.tsx`, `src/components/ui/TopBar.tsx`, `src/components/ui/BottomNav.tsx`
+- [x] Dashboard home page (`/dashboard`) — `app/(app)/dashboard/page.tsx`
 - [ ] User profile page (`/profile`)
 
 ### UI Phase 3 — Core Feature Pages

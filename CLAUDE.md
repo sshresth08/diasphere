@@ -6,6 +6,7 @@
 - `/` (`app/page.tsx`) — marketing landing page (Server Component, no auth required)
 - `/signup` (`app/(auth)/signup/page.tsx`) — registration form (Client Component)
 - `/login` (`app/(auth)/login/page.tsx`) — sign-in form (Client Component)
+- `/dashboard` (`app/(app)/dashboard/page.tsx`) — authenticated home page (Client Component)
 
 ### Components — Landing page (all co-located in `app/page.tsx`)
 - `Logo` — shared logo mark used in Navbar and Footer
@@ -19,9 +20,14 @@
 ### Components — Auth pages (co-located in their page files)
 - `Spinner` — inline SVG loading spinner, used in both signup and login submit buttons
 
+### Components — App shell (`src/components/ui/`)
+- `TopBar` — sticky white header (56px); DiaSphere logo → `/dashboard`; avatar with initials; `userName?: string` prop; defaults to `DS`
+- `BottomNav` — fixed bottom nav (64px + safe-area); 4 items (Lernen, Rezepte, Community, Notfall); active via `usePathname`; Notfall always red
+
 ### Layouts & Styles
 - `app/layout.tsx` — root layout (applies global font and styles)
 - `app/(auth)/layout.tsx` — auth card layout: centered white card on `brand-light` bg, DiaSphere logo linking to `/`, medical disclaimer; no navbar/footer
+- `app/(app)/layout.tsx` — authenticated shell: TopBar + scrollable content (max 480px) + pinned BottomNav; Server Component
 - `globals.css` — Tailwind v4 base + custom tokens: `brand`, `brand-dark`, `brand-light`, `ds-dark`, `ds-mid`, `ds-light`, `ds-border`, `ds-bg`; utility: `animate-fade-in`; component: `.how-it-works-steps`
 
 ### Library
@@ -35,10 +41,10 @@
 - **7 / 7 passing**
 
 ### Routes that do NOT exist yet
-`/dashboard`, `/lernen`, `/rezepte`, `/community`, `/notfall`, `/forgot-password`
+`/lernen`, `/rezepte`, `/community`, `/notfall`, `/rechner`, `/forgot-password`, `/profile`
 
 ---
 
 ## Next Task
 
-Build the authenticated dashboard shell: create `app/(app)/layout.tsx` with sidebar or bottom nav, and `app/(app)/dashboard/page.tsx` as the post-login home screen (UI Phase 2).
+Build UI Phase 2 remainder: post-signup onboarding flow (diabetes type confirmation, profile setup) and user profile page (`/profile`).

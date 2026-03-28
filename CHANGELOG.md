@@ -9,6 +9,16 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-28
+
+### feat(dashboard): authenticated app shell with bottom nav and dashboard home
+
+- Added `app/(app)/layout.tsx` — Server Component shell: sticky TopBar, scrollable content area (max-width 480px, mobile-first), BottomNav pinned at bottom; background `ds-bg`
+- Added `src/components/ui/TopBar.tsx` — Client Component; sticky white header (56px); DiaSphere logo linking to `/dashboard`; avatar circle showing user initials (defaults to `DS`); accepts optional `userName` prop
+- Added `src/components/ui/BottomNav.tsx` — Client Component; fixed bottom nav (64px + safe-area padding); 4 items: Lernen, Rezepte, Community, Notfall; active item detected via `usePathname`; active items show teal pill + teal label; Notfall always renders red icon
+- Added `app/(app)/dashboard/page.tsx` — Client Component; greeting section with hardcoded Typ-1 badge; 2×2 quick access card grid (Wissen & Lernen, Rezepte, KH-Rechner, Notfall) with per-card accent colour, hover lift, and full-card Link; daily tip section with teal left-border card
+- `tsc --noEmit`, `eslint`, and `vitest` (7/7) all pass with zero errors
+
 ## [0.2.0] - 2026-03-28
 
 ### feat(auth): signup and login pages with form validation and server actions
