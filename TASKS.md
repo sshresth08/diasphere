@@ -1,5 +1,7 @@
 # DiaSphere — Project Roadmap & Task Tracker
 
+_Last updated: 2026-03-28_
+
 ## Project Overview
 
 **DiaSphere** is a web platform for young people living with Type-1 diabetes, providing
@@ -51,13 +53,7 @@ carb calculator, emergency screen).
 
 ---
 
-## In Progress
-
-_Nothing actively in progress._
-
----
-
-## Backlog
+## 🔄 In Progress
 
 ### UI Phase 1 — Auth Pages
 - [ ] `/signup` page — registration form (email, password, diabetes type selection)
@@ -66,6 +62,10 @@ _Nothing actively in progress._
 - [ ] Form validation (client-side)
 - [ ] Supabase Auth integration (sign-up, sign-in, sign-out)
 - [ ] Auth middleware / route protection (`middleware.ts`)
+
+---
+
+## Backlog
 
 ### UI Phase 2 — Onboarding & Dashboard Shell
 - [ ] Post-signup onboarding flow (diabetes type confirmation, profile setup)
