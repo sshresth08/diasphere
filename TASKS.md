@@ -1,6 +1,6 @@
 # DiaSphere — Project Roadmap & Task Tracker
 
-_Last updated: 2026-03-28_
+_Last updated: 2026-03-28 (auth pages)_
 
 ## Project Overview
 
@@ -51,17 +51,19 @@ carb calculator, emergency screen).
 - [x] `app/layout.tsx` — root layout
 - [x] `globals.css` — global styles and custom Tailwind tokens (`brand`, `ds-dark`, `ds-mid`, `ds-light`, `ds-border`, `ds-bg`, `brand-light`, `brand-dark`, `animate-fade-in`, `.how-it-works-steps`)
 
+### UI Phase 1 — Auth Pages
+- [x] `app/(auth)/layout.tsx` — centered card layout on brand-light bg; logo + disclaimer; no navbar/footer
+- [x] `app/(auth)/signup/page.tsx` — email, password, confirm password, Typ 1/Typ 2 toggle; inline validation; loading spinner; success state
+- [x] `app/(auth)/login/page.tsx` — email, password; inline validation; loading spinner; forgot-password link
+- [x] `lib/auth/actions.ts` — `signUp` and `signIn` Server Actions; demo-mode guard; `redirect('/dashboard')` on sign-in success
+- [x] Form validation (client-side, on blur + on submit, all fields)
+- [x] Supabase Auth wired up (guarded behind placeholder-config check)
+
 ---
 
 ## 🔄 In Progress
 
-### UI Phase 1 — Auth Pages
-- [ ] `/signup` page — registration form (email, password, diabetes type selection)
-- [ ] `/login` page — sign-in form
-- [ ] Auth layout (`app/(auth)/layout.tsx`)
-- [ ] Form validation (client-side)
-- [ ] Supabase Auth integration (sign-up, sign-in, sign-out)
-- [ ] Auth middleware / route protection (`middleware.ts`)
+_Nothing actively in progress._
 
 ---
 

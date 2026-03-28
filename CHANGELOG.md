@@ -9,6 +9,17 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-03-28
+
+### feat(auth): signup and login pages with form validation and server actions
+
+- Added `app/(auth)/layout.tsx` — standalone auth card layout (centered white card on `brand-light` bg, DiaSphere logo, medical disclaimer, no navbar/footer)
+- Added `app/(auth)/signup/page.tsx` — Client Component with email, password, confirm-password fields and Typ 1 / Typ 2 toggle buttons; inline validation on blur and submit; loading spinner via `useTransition`; success state after registration
+- Added `app/(auth)/login/page.tsx` — Client Component with email and password fields; inline validation; loading spinner; "Passwort vergessen?" link to `/forgot-password`
+- Added `lib/auth/actions.ts` — `'use server'` file with `signUp` and `signIn` Server Actions; `ActionResult`, `SignUpData`, `SignInData` types exported; placeholder-config guard returns demo-mode error; `signIn` calls `redirect('/dashboard')` on success
+- All inputs have `<label>`, `aria-invalid`, and `aria-describedby` attributes
+- `tsc --noEmit`, `eslint`, and `vitest` (7/7) all pass with zero errors
+
 ## [0.1.0] - 2026-03-25
 
 ### feat: Supabase client setup
