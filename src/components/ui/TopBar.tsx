@@ -19,7 +19,7 @@ export default function TopBar({ userName }: TopBarProps) {
 
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-ds-border">
-      <div className="max-w-[480px] mx-auto h-14 flex items-center justify-between px-4">
+      <div className="max-w-120 mx-auto h-14 flex items-center justify-between px-4">
         {/* Logo */}
         <Link
           href="/dashboard"

@@ -7,7 +7,7 @@ export default function AppLayout({
   return (
     <div className="min-h-screen bg-ds-bg flex flex-col">
       <TopBar />
-      <main className="flex-1 max-w-[480px] w-full mx-auto px-6 pt-6 pb-24">
+      <main className="flex-1 max-w-120 w-full mx-auto px-6 pt-6 pb-24">
         {children}
       </main>
       <BottomNav />

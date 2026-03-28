@@ -108,7 +108,7 @@ export default function DashboardPage() {
         <p className="text-xs font-semibold text-ds-mid uppercase tracking-wide mb-2">
           Tipp des Tages
         </p>
-        <div className="bg-white rounded-2xl border-l-4 border-brand p-4 border border-ds-border">
+        <div className="bg-white rounded-2xl border-l-4 p-4 border border-ds-border" style={{ borderLeftColor: '#1D9E75' }}>
           <div className="flex gap-3 items-start">
             <span className="text-xl leading-none mt-0.5" aria-hidden="true">
               💡

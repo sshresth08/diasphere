@@ -26,7 +26,7 @@ export default function BottomNav() {
       className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-ds-border"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
-      <div className="max-w-[480px] mx-auto flex items-stretch h-16">
+      <div className="max-w-120 mx-auto flex items-stretch h-16">
         {NAV_ITEMS.map(({ href, label, emoji, alwaysRed }) => {
           const isActive = pathname === href || pathname.startsWith(href + '/')
           const isRed = alwaysRed
