@@ -10,6 +10,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 ## [Unreleased]
 
 ### Added
+- Zentrale Datenbank-Typen in `src/lib/types/database.ts` (`ProfilRow`, `PostRow`, `KommentarRow`, `GespeichertesRezeptRow`, `ActionResult<T>`) — Vorbereitung für Supabase-Schema
+- Server Actions für Profil-Verwaltung (`getProfil`, `updateProfil`, `erstelleProfil`) — Demo-Modus aktiv, echter Supabase-Code auskommentiert
+- Server Actions für Community (`getPosts`, `getPost`, `erstellePost`, `erstelleKommentar`, `toggleLike`) — Demo-Modus aktiv, MOCK_POSTS als Datenquelle
+- Server Actions für Rezepte (`getGespeicherteRezepte`, `speichereRezept`, `entferneGespeichertesRezept`) — Demo-Modus aktiv
 - Community-Feed (`/community`): Kategorie-Filter (Alle + 5 Kategorien), Suchfeld, Post-Karten mit Likes/Kommentar-Zähler, Gelöst-Badge
 - Community-Detail (`/community/[id]`): Post-Volltext, Kommentarliste mit Hilfreich-Counter, Kommentar-Formular im Demo-Modus
 - Floating-Button mit Modal zum Erstellen neuer Beiträge (Kategorie, Titel, Inhalt; Validierung; Demo-Modus)

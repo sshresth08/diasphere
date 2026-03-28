@@ -85,7 +85,12 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 ### Supabase Integration
 - [ ] Database schema design (users, content, posts, recipes)
 - [ ] Row-Level Security (RLS) policies
-- [ ] Server Actions / API routes for auth and data mutations
+- [x] Server Actions / API routes for auth and data mutations
+  <!-- Demo-Modus aktiv — echte Credentials ausstehend (NEXT_PUBLIC_SUPABASE_URL in .env.local ersetzen) -->
+  <!-- src/lib/types/database.ts — ProfilRow, PostRow, KommentarRow, GespeichertesRezeptRow, ActionResult<T> -->
+  <!-- src/lib/actions/profil.ts — getProfil, updateProfil, erstelleProfil -->
+  <!-- src/lib/actions/community.ts — getPosts, getPost, erstellePost, erstelleKommentar, toggleLike -->
+  <!-- src/lib/actions/rezepte.ts — getGespeicherteRezepte, speichereRezept, entferneGespeichertesRezept -->
 - [ ] Real-time subscriptions for community feed (if applicable)
 - [ ] Storage bucket for user avatars and recipe images
 
