@@ -10,6 +10,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 ## [Unreleased]
 
 ### Added
+- Community-Feed (`/community`): Kategorie-Filter (Alle + 5 Kategorien), Suchfeld, Post-Karten mit Likes/Kommentar-Zähler, Gelöst-Badge
+- Community-Detail (`/community/[id]`): Post-Volltext, Kommentarliste mit Hilfreich-Counter, Kommentar-Formular im Demo-Modus
+- Floating-Button mit Modal zum Erstellen neuer Beiträge (Kategorie, Titel, Inhalt; Validierung; Demo-Modus)
+- `src/lib/data/community.ts`: `PostType`, `KommentarType`, `KategorieConfig`, `KATEGORIEN`, `MOCK_POSTS` (6 Posts mit je mind. 2 Kommentaren)
 - Notfall-Screen (`/notfall`): Notruf-Banner als `<a href="tel:112">`, Situationen-Akkordeon (Hypoglykämie/Hyperglykämie mit Symptomen und Sofortmaßnahmen), Tap-to-Call Kontaktkarten (Notruf, Giftnotruf, Diabetes-Hotline), medizinischer Disclaimer
 
 ## [0.5.0] - 2026-03-28

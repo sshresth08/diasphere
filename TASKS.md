@@ -1,6 +1,6 @@
 # DiaSphere — Project Roadmap & Task Tracker
 
-_Last updated: 2026-03-28 (rezepte + kh-rechner)_
+_Last updated: 2026-03-28 (community)_
 
 ## Project Overview
 
@@ -79,7 +79,7 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 - [x] **Lernen** (`/lernen`) — learning hub: videos, quizzes, reading content — `app/(app)/lernen/`, `src/lib/data/quiz.ts`, `src/lib/data/artikel.ts`, `src/components/ui/BackButton.tsx`
 - [x] **Rezepte** (`/rezepte`) — diabetic-friendly recipes + carb calculator — `app/(app)/rezepte/`, `app/(app)/rezepte/[id]/`, `src/lib/data/rezepte.ts`
 - [x] **KH-Rechner** (`/rechner`) — carbohydrate calculator with product chips, zustand toggle, custom KH input — `app/(app)/rechner/`, `src/lib/data/lebensmittel.ts`
-- [ ] **Community** (`/community`) — posts, replies, peer connection
+- [x] **Community** (`/community`) — posts, replies, peer connection — `app/(app)/community/page.tsx`, `app/(app)/community/[id]/page.tsx`, `src/lib/data/community.ts`
 - [x] **Notfall** (`/notfall`) — emergency screen (full-screen, accessible) — `app/(app)/notfall/page.tsx`, `src/lib/data/notfall.ts`
 
 ### Supabase Integration
