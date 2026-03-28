@@ -9,6 +9,9 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+### Added
+- Notfall-Screen (`/notfall`): Notruf-Banner als `<a href="tel:112">`, Situationen-Akkordeon (Hypoglykämie/Hyperglykämie mit Symptomen und Sofortmaßnahmen), Tap-to-Call Kontaktkarten (Notruf, Giftnotruf, Diabetes-Hotline), medizinischer Disclaimer
+
 ## [0.5.0] - 2026-03-28
 
 ### feat(rezepte): add recipe list, detail view, and carbohydrate calculator

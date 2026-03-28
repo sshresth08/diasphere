@@ -80,7 +80,7 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 - [x] **Rezepte** (`/rezepte`) — diabetic-friendly recipes + carb calculator — `app/(app)/rezepte/`, `app/(app)/rezepte/[id]/`, `src/lib/data/rezepte.ts`
 - [x] **KH-Rechner** (`/rechner`) — carbohydrate calculator with product chips, zustand toggle, custom KH input — `app/(app)/rechner/`, `src/lib/data/lebensmittel.ts`
 - [ ] **Community** (`/community`) — posts, replies, peer connection
-- [ ] **Notfall** (`/notfall`) — emergency screen (full-screen, accessible)
+- [x] **Notfall** (`/notfall`) — emergency screen (full-screen, accessible) — `app/(app)/notfall/page.tsx`, `src/lib/data/notfall.ts`
 
 ### Supabase Integration
 - [ ] Database schema design (users, content, posts, recipes)
