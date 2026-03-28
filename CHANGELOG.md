@@ -9,6 +9,18 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-03-28
+
+### feat(rezepte): add recipe list, detail view, and carbohydrate calculator
+
+- Added `src/lib/data/rezepte.ts` — exports `Rezept` interface and `REZEPTE` array (3 diabetic-friendly recipes: Overnight Oats, Lachs mit Quinoa, Linsensuppe; each with id, emoji, kh, kcal, zeit, beschreibung, zutaten, schritte)
+- Added `src/lib/data/lebensmittel.ts` — exports `Lebensmittel` interface and `LEBENSMITTEL` array (5 foods + custom entry; each with name, roh KH/100g, gekocht KH/100g)
+- Added `app/(app)/rezepte/page.tsx` — Client Component; BackButton to `/dashboard`; stacked recipe cards with 32px emoji, amber/red/teal badges (🌾 KH, 🔥 kcal, ⏱ zeit), 2-line clamped description, hover lift + amber shadow; full-card Next.js Link to `/rezepte/{id}`; KH-Rechner promo card at bottom in purple (#EDE9FE) with icon circle, links to `/rechner`
+- Added `app/(app)/rezepte/[id]/page.tsx` — Client Component; uses `useParams<{ id: string }>()` (Next.js 16 async-params compliant); 64px centered emoji; centered badge row; Zutaten white card with bullet rows and dividers; Zubereitung step list with teal numbered circles (28px); graceful "Rezept nicht gefunden" fallback; CTA outline button linking to `/rechner`
+- Added `app/(app)/rechner/page.tsx` — Client Component; state: selectedProduct, zustand, gramm, customKH; 2-column chip grid for product selection (purple active state); conditional zustand toggle (Roh/Gekocht) when product has both values; conditional custom KH number input; Gramm input with absolutely-positioned suffix; live KH result (gesamtKH = gramm × khPro100 / 100) displayed in purple result card at 48px; all inputs labeled
+- BottomNav "Rezepte" tab is active on all `/rezepte/*` sub-routes (existing `startsWith` logic covers it)
+- `tsc --noEmit`, `eslint`, and `vitest` (7/7) all pass with zero errors
+
 ## [0.4.0] - 2026-03-28
 
 ### feat(lernen): learning hub with video, quiz, and reading content pages

@@ -1,6 +1,6 @@
 # DiaSphere — Project Roadmap & Task Tracker
 
-_Last updated: 2026-03-28 (lernen hub)_
+_Last updated: 2026-03-28 (rezepte + kh-rechner)_
 
 ## Project Overview
 
@@ -77,7 +77,8 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 
 ### UI Phase 3 — Core Feature Pages
 - [x] **Lernen** (`/lernen`) — learning hub: videos, quizzes, reading content — `app/(app)/lernen/`, `src/lib/data/quiz.ts`, `src/lib/data/artikel.ts`, `src/components/ui/BackButton.tsx`
-- [ ] **Rezepte** (`/rezepte`) — diabetic-friendly recipes + carb calculator
+- [x] **Rezepte** (`/rezepte`) — diabetic-friendly recipes + carb calculator — `app/(app)/rezepte/`, `app/(app)/rezepte/[id]/`, `src/lib/data/rezepte.ts`
+- [x] **KH-Rechner** (`/rechner`) — carbohydrate calculator with product chips, zustand toggle, custom KH input — `app/(app)/rechner/`, `src/lib/data/lebensmittel.ts`
 - [ ] **Community** (`/community`) — posts, replies, peer connection
 - [ ] **Notfall** (`/notfall`) — emergency screen (full-screen, accessible)
 
