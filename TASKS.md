@@ -1,6 +1,6 @@
 # DiaSphere — Project Roadmap & Task Tracker
 
-_Last updated: 2026-03-28 (dashboard shell)_
+_Last updated: 2026-03-28 (lernen hub)_
 
 ## Project Overview
 
@@ -63,7 +63,7 @@ carb calculator, emergency screen).
 
 ## 🔄 In Progress
 
-_Nothing actively in progress._
+_Nothing actively in progress — next: Rezepte page or profile/onboarding._
 
 ---
 
@@ -76,7 +76,7 @@ _Nothing actively in progress._
 - [ ] User profile page (`/profile`)
 
 ### UI Phase 3 — Core Feature Pages
-- [ ] **Lernen** (`/lernen`) — learning hub: videos, quizzes, reading content
+- [x] **Lernen** (`/lernen`) — learning hub: videos, quizzes, reading content — `app/(app)/lernen/`, `src/lib/data/quiz.ts`, `src/lib/data/artikel.ts`, `src/components/ui/BackButton.tsx`
 - [ ] **Rezepte** (`/rezepte`) — diabetic-friendly recipes + carb calculator
 - [ ] **Community** (`/community`) — posts, replies, peer connection
 - [ ] **Notfall** (`/notfall`) — emergency screen (full-screen, accessible)

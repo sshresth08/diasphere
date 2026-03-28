@@ -9,6 +9,20 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-03-28
+
+### feat(lernen): learning hub with video, quiz, and reading content pages
+
+- Added `src/lib/data/quiz.ts` — exports `QuizFrage` interface and `QUIZ_FRAGEN` array (3 diabetes-knowledge questions with answer options, correct index, and explanation text)
+- Added `src/lib/data/artikel.ts` — exports `Artikel` interface and `ARTIKEL` array (3 inline reading cards: Typ-1 Diabetes, Übergang zur Erwachsenenmedizin, Blutzucker verstehen)
+- Added `src/components/ui/BackButton.tsx` — reusable Client Component; props `{ href, label? }`; 40×40 rounded-xl back-arrow button; `aria-label="Zurück"`; uses Next.js `Link`
+- Added `app/(app)/lernen/page.tsx` — learning hub menu; 3 full-width nav cards (Lernvideos, Lernquiz, Leseinhalte) with per-card icon circle, accent colour, and hover lift; no BackButton (top-level route reachable from BottomNav)
+- Added `app/(app)/lernen/video/page.tsx` — embedded YouTube iframe (16:9, border-radius 16px); teal info card below; CTA button linking to `/lernen/quiz`
+- Added `app/(app)/lernen/quiz/page.tsx` — interactive multi-step quiz; animated progress bar; 4 answer buttons with correct (green) / wrong (red) highlight after selection; explanation card; Next/Results navigation; Results screen with emoji, score, motivational text, "Quiz wiederholen" and "Leseinhalte entdecken" actions
+- Added `app/(app)/lernen/lesen/page.tsx` — renders 3 article cards; each card shows title in teal-dark, lesezeit pill, and full body text inline; no detail route
+- BottomNav "Lernen" tab is active on all `/lernen/*` sub-routes (existing `startsWith` logic requires no changes)
+- `tsc --noEmit`, `eslint`, and `vitest` (7/7) all pass with zero errors
+
 ## [0.3.0] - 2026-03-28
 
 ### feat(dashboard): authenticated app shell with bottom nav and dashboard home
