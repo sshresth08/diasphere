@@ -74,7 +74,7 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 - [ ] Post-signup onboarding flow (diabetes type confirmation, profile setup)
 - [x] Authenticated app shell layout (bottom nav) — `app/(app)/layout.tsx`, `src/components/ui/TopBar.tsx`, `src/components/ui/BottomNav.tsx`
 - [x] Dashboard home page (`/dashboard`) — `app/(app)/dashboard/page.tsx`
-- [ ] User profile page (`/profile`) — nächste offene Task: Profil-Seite mit app.profiles lesen/schreiben
+- [x] User profile page (`/profile`) — `app/(app)/profile/page.tsx`; anzeigename + diabetes_typ editierbar; email + mitglied-seit read-only; Avatar-Initialen
 
 ### UI Phase 3 — Core Feature Pages
 - [x] **Lernen** (`/lernen`) — learning hub: videos, quizzes, reading content — `app/(app)/lernen/`, `src/lib/data/quiz.ts`, `src/lib/data/artikel.ts`, `src/components/ui/BackButton.tsx`
@@ -88,6 +88,9 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 - [ ] Row-Level Security (RLS) policies
 - [x] Server Actions / API routes for auth and data mutations
 - [x] Auth (Login/Signup) — Supabase Auth aktiviert, isPlaceholderConfig() Guard entfernt, diabetes_typ + anzeigename als user_metadata, Trigger app.handle_new_user() legt Profil in app.profiles an
+- [x] Auth Callback Route — `app/auth/callback/route.ts` für E-Mail-Bestätigungs-Redirect (NEXT_PUBLIC_SITE_URL + /auth/callback)
+- [x] Logout — `signOut()` Server Action; TopBar Logout-Button + Avatar-Link zu /profile
+- [x] Profil-Seite — `getProfil` + `updateProfil` aktiviert (app schema); Profil-Seite vollständig
   <!-- src/lib/types/database.ts — ProfilRow, PostRow, KommentarRow, GespeichertesRezeptRow, ActionResult<T> -->
   <!-- src/lib/actions/profil.ts — getProfil, updateProfil, erstelleProfil -->
   <!-- src/lib/actions/community.ts — getPosts, getPost, erstellePost, erstelleKommentar, toggleLike -->

@@ -27,10 +27,12 @@ export async function signUp(data: SignUpData): Promise<ActionResult> {
   try {
     const supabase = await createClient()
     const anzeigename = data.email.split('@')[0]
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
     const { error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: {
+        emailRedirectTo: `${siteUrl}/auth/callback`,
         data: {
           diabetes_typ: data.diabetesType,
           anzeigename,
@@ -61,4 +63,10 @@ export async function signIn(data: SignInData): Promise<ActionResult> {
   }
 
   redirect('/dashboard')
+}
+
+export async function signOut(): Promise<void> {
+  const supabase = await createClient()
+  await supabase.auth.signOut()
+  redirect('/login')
 }

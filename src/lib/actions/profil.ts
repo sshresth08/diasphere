@@ -1,51 +1,46 @@
 'use server'
 
+import { createClient } from '@/lib/supabase/server'
 import type { ActionResult, ProfilRow } from '@/src/lib/types/database'
-// import { createClient } from '@/lib/supabase/server'
-// TODO: Supabase aktivieren — Placeholder-Vars in .env.local ersetzen
 
-// ─── Demo-Modus-Guard ─────────────────────────────────────────────────────────
-// Gibt true zurück, solange keine echten Supabase-Credentials konfiguriert sind
-const isDemoMode = (): boolean =>
-  !process.env.NEXT_PUBLIC_SUPABASE_URL ||
-  process.env.NEXT_PUBLIC_SUPABASE_URL === 'your-project-url'
+// ─── Hilfsfunktion: DB-Zeile → ProfilRow (snake_case → camelCase) ─────────────
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function mapZeileZuProfil(zeile: any, email = ''): ProfilRow {
+  return {
+    id: zeile.id,
+    email,
+    anzeigename: zeile.anzeigename ?? '',
+    diabetesTyp: zeile.diabetes_typ as 'typ1' | 'typ2',
+    erstelltAm: zeile.created_at ?? zeile.erstellt_am ?? new Date().toISOString(),
+    aktualisiertAm: zeile.updated_at ?? zeile.aktualisiert_am ?? new Date().toISOString(),
+    avatarUrl: zeile.avatar_url ?? null,
+    bio: zeile.bio ?? null,
+  }
+}
 
 // ─── Profil eines Nutzers abrufen ─────────────────────────────────────────────
 export async function getProfil(userId: string): Promise<ActionResult<ProfilRow>> {
-  if (isDemoMode()) {
-    // Demo-Modus: Mock-Profil zurückgeben
-    return {
-      success: true,
-      data: {
-        id: userId,
-        email: 'demo@diasphere.de',
-        anzeigename: 'Demo-Nutzer',
-        diabetesTyp: 'typ1',
-        erstelltAm: new Date().toISOString(),
-        aktualisiertAm: new Date().toISOString(),
-        avatarUrl: null,
-        bio: 'Dies ist ein Demo-Profil.',
-      },
-    }
+  try {
+    const supabase = await createClient()
+
+    // Eingeloggten Nutzer holen (für die E-Mail-Adresse)
+    const { data: { user } } = await supabase.auth.getUser()
+
+    // Profil aus dem app-Schema abrufen
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { data, error } = await (supabase as any)
+      .schema('app')
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .single()
+
+    if (error) return { success: false, fehler: error.message }
+    return { success: true, data: mapZeileZuProfil(data, user?.email ?? '') }
+  } catch (err) {
+    console.error('Supabase-Fehler (getProfil):', err)
+    return { success: false, fehler: 'Ein Fehler ist aufgetreten.' }
   }
-
-  // TODO: Supabase aktivieren — Placeholder-Vars in .env.local ersetzen
-  // try {
-  //   const supabase = await createClient()
-  //   const { data, error } = await supabase
-  //     .from('profiles')
-  //     .select('*')
-  //     .eq('id', userId)
-  //     .single()
-  //
-  //   if (error) return { success: false, fehler: error.message }
-  //   return { success: true, data: data as ProfilRow }
-  // } catch (fehler) {
-  //   console.error('Supabase-Fehler:', fehler)
-  //   return { success: false, fehler: 'Ein Fehler ist aufgetreten.' }
-  // }
-
-  return { success: false, fehler: 'Supabase nicht konfiguriert.' }
 }
 
 // ─── Profil aktualisieren ─────────────────────────────────────────────────────
@@ -53,68 +48,60 @@ export async function updateProfil(
   userId: string,
   daten: Partial<Pick<ProfilRow, 'anzeigename' | 'bio' | 'diabetesTyp'>>
 ): Promise<ActionResult> {
-  if (isDemoMode()) {
-    // Demo-Modus: Update simulieren
-    console.log('Demo-Modus: Profil-Update simuliert', daten)
+  try {
+    const supabase = await createClient()
+
+    // camelCase → snake_case für die DB
+    const dbDaten: Record<string, unknown> = {}
+    if (daten.anzeigename !== undefined) dbDaten.anzeigename = daten.anzeigename
+    if (daten.diabetesTyp !== undefined) dbDaten.diabetes_typ = daten.diabetesTyp
+    if (daten.bio !== undefined) dbDaten.bio = daten.bio
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase as any)
+      .schema('app')
+      .from('profiles')
+      .update(dbDaten)
+      .eq('id', userId)
+
+    if (error) return { success: false, fehler: error.message }
     return { success: true }
+  } catch (err) {
+    console.error('Supabase-Fehler (updateProfil):', err)
+    return { success: false, fehler: 'Ein Fehler ist aufgetreten.' }
   }
-
-  // TODO: Supabase aktivieren — Placeholder-Vars in .env.local ersetzen
-  // try {
-  //   const supabase = await createClient()
-  //   const { error } = await supabase
-  //     .from('profiles')
-  //     .update({
-  //       ...daten,
-  //       aktualisiertAm: new Date().toISOString(),
-  //     })
-  //     .eq('id', userId)
-  //
-  //   if (error) return { success: false, fehler: error.message }
-  //   return { success: true }
-  // } catch (fehler) {
-  //   console.error('Supabase-Fehler:', fehler)
-  //   return { success: false, fehler: 'Ein Fehler ist aufgetreten.' }
-  // }
-
-  return { success: false, fehler: 'Supabase nicht konfiguriert.' }
 }
 
-// ─── Profil beim ersten Login anlegen (nach Signup) ───────────────────────────
+// ─── Profil anlegen — wird normalerweise vom Trigger app.handle_new_user() ──────
+// übernommen; diese Funktion ist nur als Fallback vorhanden.
 export async function erstelleProfil(
   userId: string,
   email: string,
   anzeigename: string,
   diabetesTyp: 'typ1' | 'typ2'
 ): Promise<ActionResult> {
-  if (isDemoMode()) {
-    // Demo-Modus: Profil-Erstellung simulieren
-    console.log('Demo-Modus: Profil-Erstellung simuliert')
+  try {
+    const supabase = await createClient()
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error } = await (supabase as any)
+      .schema('app')
+      .from('profiles')
+      .insert({
+        id: userId,
+        anzeigename,
+        diabetes_typ: diabetesTyp,
+        // email nicht einfügen — kommt aus auth.users via Trigger
+      })
+
+    if (error) return { success: false, fehler: error.message }
     return { success: true }
+  } catch (err) {
+    console.error('Supabase-Fehler (erstelleProfil):', err)
+    return { success: false, fehler: 'Ein Fehler ist aufgetreten.' }
   }
 
-  // TODO: Supabase aktivieren — Placeholder-Vars in .env.local ersetzen
-  // try {
-  //   const supabase = await createClient()
-  //   const { error } = await supabase
-  //     .from('profiles')
-  //     .insert({
-  //       id: userId,
-  //       email,
-  //       anzeigename,
-  //       diabetesTyp,
-  //       erstelltAm: new Date().toISOString(),
-  //       aktualisiertAm: new Date().toISOString(),
-  //       avatarUrl: null,
-  //       bio: null,
-  //     })
-  //
-  //   if (error) return { success: false, fehler: error.message }
-  //   return { success: true }
-  // } catch (fehler) {
-  //   console.error('Supabase-Fehler:', fehler)
-  //   return { success: false, fehler: 'Ein Fehler ist aufgetreten.' }
-  // }
-
-  return { success: false, fehler: 'Supabase nicht konfiguriert.' }
+  // Hinweis: E-Mail wird hier bewusst nicht in app.profiles gespeichert —
+  // sie liegt in auth.users und wird per getUser() abgerufen.
+  void email
 }

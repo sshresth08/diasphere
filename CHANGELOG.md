@@ -9,11 +9,20 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+### Added
+- `app/auth/callback/route.ts` — Supabase Code Exchange Handler für E-Mail-Bestätigungs-Redirect
+- `signOut()` Server Action in `lib/auth/actions.ts` — meldet ab und leitet zu `/login` weiter
+- TopBar: dezenter Logout-Button (SVG-Tür-Icon) via `<form action={signOut}>`; Avatar-Link zu `/profile`
+- `app/(app)/profile/page.tsx` — Profil-Seite mit editierbarem Anzeigename und Diabetes-Typ-Toggle; E-Mail + Mitglied-seit als read-only; Avatar-Platzhalter mit Initialen; Ladestate + Erfolgs-/Fehlermeldung
+- `.env.local`: `NEXT_PUBLIC_SITE_URL=http://localhost:3000` hinzugefügt
+
 ### Changed
+- `signUp` übergibt jetzt `emailRedirectTo: NEXT_PUBLIC_SITE_URL + /auth/callback`
 - Supabase Auth aktiviert (signUp, signIn) — isDemoMode() / isPlaceholderConfig() Guard entfernt
 - app.profiles wird automatisch via Trigger befüllt (diabetes_typ, anzeigename)
+- `src/lib/actions/profil.ts` — Supabase-Calls aktiviert; `supabase.schema('app').from('profiles')`; snake_case ↔ camelCase Mapping
 
-### Added
+### Added (vorherige Session)
 - Zentrale Datenbank-Typen in `src/lib/types/database.ts` (`ProfilRow`, `PostRow`, `KommentarRow`, `GespeichertesRezeptRow`, `ActionResult<T>`) — Vorbereitung für Supabase-Schema
 - Server Actions für Profil-Verwaltung (`getProfil`, `updateProfil`, `erstelleProfil`) — Demo-Modus aktiv, echter Supabase-Code auskommentiert
 - Server Actions für Community (`getPosts`, `getPost`, `erstellePost`, `erstelleKommentar`, `toggleLike`) — Demo-Modus aktiv, MOCK_POSTS als Datenquelle
