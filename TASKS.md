@@ -32,7 +32,8 @@ carb calculator, emergency screen).
 ### Supabase Client Layer
 - [x] `lib/supabase/client.ts` — browser client factory (`createBrowserClient` via `@supabase/ssr`)
 - [x] `lib/supabase/server.ts` — async server client factory (`createServerClient`, Next.js 16 async `cookies()`, `server-only` guard)
-- [x] `.env.local` with placeholder vars: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+- [x] `.env.local` with real Supabase credentials: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- [x] Supabase Auth aktiviert (signUp, signIn, app.profiles Trigger)
 
 ### Tests
 - [x] Vitest configured (`vitest.config.mts`, `vite-tsconfig-paths`)
@@ -73,7 +74,7 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 - [ ] Post-signup onboarding flow (diabetes type confirmation, profile setup)
 - [x] Authenticated app shell layout (bottom nav) — `app/(app)/layout.tsx`, `src/components/ui/TopBar.tsx`, `src/components/ui/BottomNav.tsx`
 - [x] Dashboard home page (`/dashboard`) — `app/(app)/dashboard/page.tsx`
-- [ ] User profile page (`/profile`)
+- [ ] User profile page (`/profile`) — nächste offene Task: Profil-Seite mit app.profiles lesen/schreiben
 
 ### UI Phase 3 — Core Feature Pages
 - [x] **Lernen** (`/lernen`) — learning hub: videos, quizzes, reading content — `app/(app)/lernen/`, `src/lib/data/quiz.ts`, `src/lib/data/artikel.ts`, `src/components/ui/BackButton.tsx`
@@ -86,7 +87,7 @@ _Nothing actively in progress — next: Rezepte page or profile/onboarding._
 - [ ] Database schema design (users, content, posts, recipes)
 - [ ] Row-Level Security (RLS) policies
 - [x] Server Actions / API routes for auth and data mutations
-  <!-- Demo-Modus aktiv — echte Credentials ausstehend (NEXT_PUBLIC_SUPABASE_URL in .env.local ersetzen) -->
+- [x] Auth (Login/Signup) — Supabase Auth aktiviert, isPlaceholderConfig() Guard entfernt, diabetes_typ + anzeigename als user_metadata, Trigger app.handle_new_user() legt Profil in app.profiles an
   <!-- src/lib/types/database.ts — ProfilRow, PostRow, KommentarRow, GespeichertesRezeptRow, ActionResult<T> -->
   <!-- src/lib/actions/profil.ts — getProfil, updateProfil, erstelleProfil -->
   <!-- src/lib/actions/community.ts — getPosts, getPost, erstellePost, erstelleKommentar, toggleLike -->

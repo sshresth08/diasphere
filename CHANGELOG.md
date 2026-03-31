@@ -9,6 +9,10 @@ and this project adheres to [Conventional Commits](https://www.conventionalcommi
 
 ## [Unreleased]
 
+### Changed
+- Supabase Auth aktiviert (signUp, signIn) — isDemoMode() / isPlaceholderConfig() Guard entfernt
+- app.profiles wird automatisch via Trigger befüllt (diabetes_typ, anzeigename)
+
 ### Added
 - Zentrale Datenbank-Typen in `src/lib/types/database.ts` (`ProfilRow`, `PostRow`, `KommentarRow`, `GespeichertesRezeptRow`, `ActionResult<T>`) — Vorbereitung für Supabase-Schema
 - Server Actions für Profil-Verwaltung (`getProfil`, `updateProfil`, `erstelleProfil`) — Demo-Modus aktiv, echter Supabase-Code auskommentiert

@@ -21,42 +21,32 @@ export interface SignInData {
   password: string
 }
 
-/* ─── Guard ──────────────────────────────────────────────────────────────── */
-
-function isPlaceholderConfig(): boolean {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
-  return url === 'your-project-url' || !url.startsWith('https://')
-}
-
 /* ─── Actions ────────────────────────────────────────────────────────────── */
 
 export async function signUp(data: SignUpData): Promise<ActionResult> {
-  if (isPlaceholderConfig()) {
-    return { success: false, error: 'Auth nicht konfiguriert (Demo-Modus)' }
-  }
-
   try {
     const supabase = await createClient()
+    const anzeigename = data.email.split('@')[0]
     const { error } = await supabase.auth.signUp({
       email: data.email,
       password: data.password,
       options: {
-        data: { diabetes_type: data.diabetesType },
+        data: {
+          diabetes_typ: data.diabetesType,
+          anzeigename,
+        },
       },
     })
 
     if (error) return { success: false, error: error.message }
     return { success: true }
+    // TODO: Supabase aktiviert — app schema, Tabelle: app.profiles
   } catch {
     return { success: false, error: 'Registrierung fehlgeschlagen. Bitte versuche es erneut.' }
   }
 }
 
 export async function signIn(data: SignInData): Promise<ActionResult> {
-  if (isPlaceholderConfig()) {
-    return { success: false, error: 'Auth nicht konfiguriert (Demo-Modus)' }
-  }
-
   try {
     const supabase = await createClient()
     const { error } = await supabase.auth.signInWithPassword({
@@ -65,6 +55,7 @@ export async function signIn(data: SignInData): Promise<ActionResult> {
     })
 
     if (error) return { success: false, error: error.message }
+    // TODO: Supabase aktiviert — app schema, Tabelle: app.profiles
   } catch {
     return { success: false, error: 'Anmeldung fehlgeschlagen. Bitte versuche es erneut.' }
   }
